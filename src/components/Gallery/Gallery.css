@@ -1,0 +1,162 @@
+.modal {
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow: auto;
+  }
+  
+  .modal-content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .modal-content {
+    max-width: 80%;
+    max-height: 80%;
+  }
+  
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    cursor: pointer;
+  }
+  .__JnHV{
+    background: none !important;
+  }
+  .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .nav-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .prev {
+    left: 20px;
+  }
+  
+  .next {
+    right: 20px;
+  }
+  
+  .ImageModal{
+    padding: 0 0px;
+  }
+  .category-list {
+    display: grid;
+     grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px;
+    margin: 5rem;
+    }
+
+    .card1{
+      position: relative;
+      width: 400px;
+      height: 250px;
+      background: linear-gradient(to top, #870000c9, #190a05);
+      border-radius: 4px;
+      box-shadow:0 2px 10px rgba(0,0,0,.2);
+    }
+    .card1:before,
+    .card1:after
+    {
+      content:"";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(to bottom, #23252699, #ae10105d);
+      transition: 0.5s;
+      z-index:-1;
+    }
+    .card1:hover:before{
+    transform: rotate(20deg);
+    box-shadow: 0 2px 20px rgba(0,0,0,.2);
+    }
+    .card1:hover:after{
+    transform: rotate(10deg);
+    box-shadow: 0 2px 20px rgba(0,0,0,.2);
+    }
+    .card1 .imgBx{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    right: 10px;
+    background: #000;
+    transition: 0.5s;
+    z-index: 1;
+    }
+    
+    .card1:hover .imgBx
+    {
+      bottom: 50px;
+    }
+  
+    .card1 .imgBx img{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+  
+    .card1 .details{
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        height: 60px;
+        text-align: center;
+    }
+  
+    .card1 .details h2{
+     font-weight: 600;
+     padding:10px;
+     font-size: 20px;
+     color: rgba(255, 255, 255, 0.805);
+     text-transform: uppercase;
+    } 
+
+
+    @media screen and (max-width: 768px) {
+      .category-list {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        padding: 30px 20px;
+        margin: 0;
+      }
+      .card1{
+        position: relative;
+        width: 100%;
+        height: 250px;
+      }
+      .ImageModal{
+        padding: 0 20px !important;
+      }
+    }
+    
+      /* Styles for the modal overlay */
+   
+    
+    

@@ -1,0 +1,97 @@
+.card {
+  width: 90%;
+  height: 80%;
+  margin: auto;
+  min-height: 512px;
+  box-shadow: 0px 35px 70px 0px rgba(255, 0, 0, 0.65), 0px 30px 40px -10px rgba(255, 100, 124, 0.55);
+background: linear-gradient(180deg, rgba(255, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3%;
+}
+
+
+@media screen and (max-width: 512px) {
+  .card {
+    margin-top: 40px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+.header h2 {
+  text-align: center;
+  color: black;
+  font-weight: 900;
+  transition: opacity 0.05s ease;
+  font-size: 64px;
+  padding: 0%;
+  margin: 0%;
+}
+
+.logo {
+  font-weight: bold;
+}
+
+.header:hover {
+  opacity: 0.75;
+}
+
+
+.content {
+  flex: 1 1 auto;
+  min-height: 256px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content .title-holder {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+
+
+.content .title-holder p {
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+@media screen and (max-width: 768px) {
+  .content .title-holder {
+    max-width: 80%;
+  }
+  .content{
+    margin: 30px;
+  }
+  .header h2 {
+    font-size: 42px;
+  }
+}
+
+.content .cta {
+  min-width: 64px;
+  padding: 16px 24px;
+  background: #090b13;
+  color: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1em;
+  font-weight: bold;
+  transform: none;
+  box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s cubic-bezier(0.25, 0.25, 0.315, 1.35), transform 0.1s linear;
+}
+
+.content .cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0px 10px 40px 0px rgba(0, 0, 0, 0.3);
+}
+

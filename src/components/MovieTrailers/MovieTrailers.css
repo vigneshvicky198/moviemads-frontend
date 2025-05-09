@@ -1,0 +1,51 @@
+.movieTrailers-container {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.9)
+}
+
+.Movietrailers-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(60deg, #ff0015, #c71b29);
+    width: 100%;
+    height: 0;
+    transition: 1.5s ease;
+}
+
+.movieTrailers-container:hover .Movietrailers-overlay {
+    height: auto;
+    width: 100%;
+}
+
+.movieTrailers-title {
+    color:#ffffff;
+    /* font-weight: bold; */
+    font-size: 16px;
+    text-align: center;
+    padding: 8px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.pagination{
+    /* background-color: #ffffff; */
+    align-items: center;
+    text-align: center;
+    /* padding: 20px 0px; */
+}
+
+@media screen and (max-width: 512px) {
+    .movieTrailers-title {
+        color:#ffffff;
+        /* font-weight: bold; */
+        font-size: 10px;
+        text-align: center;
+        padding: 4px;
+        margin: 0;
+        text-transform: uppercase;
+    }
+}

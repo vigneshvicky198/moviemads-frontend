@@ -1,0 +1,377 @@
+.button-57 {
+    position: relative;
+    overflow: hidden;
+    border: 5px solid #e50914;
+    color: #ffffff;
+    display: inline-block;
+    font-size: 15px;
+    line-height: 15px;
+    padding: 15px 18px 15px 10px;
+    text-decoration: none;
+    cursor: pointer;
+    background: #303030;
+    text-transform: uppercase;
+    border-radius: 10px;
+    font-weight: bold;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    -webkit-animation: flicker-1 2s linear infinite both;
+    animation: flicker-1 2s linear infinite both;
+    }
+.awardlogo{
+  height: 350px;
+  width: auto;
+ margin-left: 32%;
+}
+.awardvideo{
+  margin: 0 auto;
+  width: 100%;
+  max-width: 800px;
+}
+    @media screen and (max-width: 512px) {
+      .button-57 {
+        width: 50%;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      .awardlogo{
+        height: 150px;
+        margin-left: 40%;
+      }
+    }
+
+    @-webkit-keyframes flicker-1 {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        41.99% {
+          opacity: 1;
+        }
+        42% {
+          opacity: 0;
+        }
+        43% {
+          opacity: 0;
+        }
+        43.01% {
+          opacity: 1;
+        }
+        47.99% {
+          opacity: 1;
+        }
+        48% {
+          opacity: 0;
+        }
+        49% {
+          opacity: 0;
+        }
+        49.01% {
+          opacity: 1;
+        }
+      }
+      @keyframes flicker-1 {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        41.99% {
+          opacity: 1;
+        }
+        42% {
+          opacity: 0;
+        }
+        43% {
+          opacity: 0;
+        }
+        43.01% {
+          opacity: 1;
+        }
+        47.99% {
+          opacity: 1;
+        }
+        48% {
+          opacity: 0;
+        }
+        49% {
+          opacity: 0;
+        }
+        49.01% {
+          opacity: 1;
+        }
+      }
+      
+    
+    .button-57 span:first-child {
+    position: relative;
+    transition: color 600ms cubic-bezier(0.48, 0, 0.12, 1);
+    z-index: 10;
+    }
+    
+    .button-57 span:last-child {
+    color: white;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    transition: all 500ms cubic-bezier(0.48, 0, 0.12, 1);
+    z-index: 100;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translateY(225%) translateX(-50%);
+    height: 14px;
+    line-height: 13px;
+    }
+    
+    .button-57:after {
+    content: "";
+    position: absolute;
+    bottom: -50%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background-color: #e50914;
+    transform-origin: bottom center;
+    transition: transform 600ms cubic-bezier(0.48, 0, 0.12, 1);
+    transform: skewY(9.3deg) scaleY(0);
+    z-index: 50;
+    }
+    
+    .button-57:hover:after {
+    transform-origin: bottom center;
+    transform: skewY(9.3deg) scaleY(2);
+    }
+    
+    .button-57:hover span:last-child {
+    transform: translateX(-50%) translateY(-100%);
+    opacity: 1;
+    transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
+    }
+
+    .marquee-containers {
+      overflow: hidden;
+      width: 100vw;
+      position: relative;
+    }
+    
+    .marquees {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee-animation 30s linear infinite both;
+      color: #ffffff;
+    }
+    
+    @media screen and (max-width: 512px) {
+      .marquees {
+        animation: marquee-animation 15s  infinite;
+      }
+      
+    }
+    @keyframes marquee-animation {
+      from {
+        transform: translateX(90vw);
+      }
+      to {
+        transform: translateX(-100vw);
+      }
+    }
+
+    :root {
+      --glow-color: rgb(238, 216, 18);
+    }
+
+
+.glowing-btn {
+  position: relative;
+  color: var(--glow-color);
+  cursor: pointer;
+  padding: 0.35em 1em;
+  border: 0.15em solid var(--glow-color);
+  border-radius: 0.45em;
+  background: none;
+  perspective: 2em;
+  font-family: "Raleway", sans-serif;
+  font-size: 0.9em;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+
+  -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  animation: border-flicker 2s linear infinite;
+}
+
+.glowing-txt {
+  -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+    0 0 0.45em var(--glow-color);
+  -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+    0 0 0.45em var(--glow-color);
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color);
+  animation: text-flicker 3s linear infinite;
+}
+
+.faulty-letter {
+  opacity: 0.5;
+  animation: faulty-flicker 2s linear infinite;
+}
+
+.glowing-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.9;
+  filter: blur(2em);
+  transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
+  background: var(--glow-color);
+  pointer-events: none;
+}
+
+.glowing-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  z-index: -1;
+  background-color: var(--glow-color);
+  box-shadow: 0 0 2em 0.2em var(--glow-color);
+  transition: opacity 100ms linear;
+}
+
+.glowing-btn:hover {
+  color: rgba(0, 0, 0, 0.8);
+  text-shadow: none;
+  animation: none;
+}
+
+.glowing-btn:hover .glowing-txt {
+  animation: none;
+}
+
+.glowing-btn:hover .faulty-letter {
+  animation: none;
+  text-shadow: none;
+  opacity: 1;
+}
+
+.glowing-btn:hover:before {
+  filter: blur(1.5em);
+  opacity: 1;
+}
+
+.glowing-btn:hover:after {
+  opacity: 1;
+}
+@keyframes faulty-flicker {
+  0% {
+    opacity: 0.1;
+  }
+  2% {
+    opacity: 0.1;
+  }
+  4% {
+    opacity: 0.5;
+  }
+  19% {
+    opacity: 0.5;
+  }
+  21% {
+    opacity: 0.1;
+  }
+  23% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  83% {
+    opacity: 0.4;
+  }
+
+  87% {
+    opacity: 1;
+  }
+}
+
+@keyframes text-flicker {
+  0% {
+    opacity: 0.1;
+  }
+
+  2% {
+    opacity: 1;
+  }
+
+  8% {
+    opacity: 0.1;
+  }
+
+  9% {
+    opacity: 1;
+  }
+
+  12% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.3;
+  }
+  30% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0.7;
+  }
+  72% {
+    opacity: 0.2;
+  }
+
+  77% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes border-flicker {
+  0% {
+    opacity: 0.1;
+  }
+  2% {
+    opacity: 1;
+  }
+  4% {
+    opacity: 0.1;
+  }
+
+  8% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .glowing-btn{
+    font-size: 0.8em;
+  }
+}
