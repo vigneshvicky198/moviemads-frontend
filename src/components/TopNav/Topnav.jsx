@@ -74,7 +74,7 @@ const Topnav = () => {
 
   const getAmount = async() =>{
     try{
-      const res = await axios.get(`${API_URL}/api/price?populate=*`)
+      const res = await axios.get(`https://api.moviemads.com/api/price?populate=*`)
       setPrice(res?.data?.data?.attributes?.ContestPrice);
       // console.log(res,'amount')
     }catch(err){

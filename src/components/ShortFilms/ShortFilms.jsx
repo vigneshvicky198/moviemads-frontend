@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { json, Link } from 'react-router-dom';
 // Import Swiper styles
@@ -22,24 +22,24 @@ const ShortFilms = () => {
 
 
   const [movies, setMovies] = useState([]);
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTFhOWQ1NDA4YjVhYmEwMjNjZjdiMDE2ZmJmNjc2NiIsInN1YiI6IjY1ZTAyZTVhMmQ1MzFhMDE4NWJmYWY1OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gTjTU9CcYJYFqqwWS6mALcPpRaT5MykGbaYm3CHep9A'
-      }
-    };
-    const getMovies = () => {
-      fetch('https://api.themoviedb.org/3/discover/movie?api_key=5e1a9d5408b5aba023cf7b016fbf6766&with_original_language=te', options)
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZTFhOWQ1NDA4YjVhYmEwMjNjZjdiMDE2ZmJmNjc2NiIsInN1YiI6IjY1ZTAyZTVhMmQ1MzFhMDE4NWJmYWY1OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gTjTU9CcYJYFqqwWS6mALcPpRaT5MykGbaYm3CHep9A'
+    }
+  };
+  const getMovies = () => {
+    fetch('https://api.themoviedb.org/3/discover/movie?api_key=5e1a9d5408b5aba023cf7b016fbf6766&with_original_language=te', options)
       .then(response => response.json())
       .then(json => setMovies(json.results))
       .catch(err => console.error(err));
-    }
-    // console.log("TV",movies)
-   
-    useEffect(() => {
-      getMovies();
-    },[]);
+  }
+  // console.log("TV",movies)
+
+  useEffect(() => {
+    getMovies();
+  }, []);
 
 
   // Function to filter movies based on search query, language, and genre
@@ -71,22 +71,22 @@ const ShortFilms = () => {
 
   return (
     <>
-    <Topnav/>
-    <Header/>
-    <div className="card">
-    <div className="content">
-      <div className="title-holder">
-        <h2>Get ready for the SHORT FILMS</h2>
-    <div className="header">
-        <h2>COMING SOON</h2>
+      <Topnav />
+      <Header />
+      <div className="card">
+        <div className="content">
+          <div className="title-holder">
+            <h2>Get ready for the SHORT FILMS</h2>
+            <div className="header">
+              <h2>COMING SOON</h2>
+            </div>
+            <p>Page coming soon. Please check back to know more. Shoot us an email if you're curious.</p>
+          </div>
+          <a className="cta" href="mailto:jgntechnologies@gmail.com">
+            <div >Send us an email</div>
+          </a>
+        </div>
       </div>
-        <p>Page coming soon. Please check back to know more. Shoot us an email if you're curious.</p>
-      </div>
-      <a className="cta" href="mailto:jgntechnologies@gmail.com">
-        <div >Send us an email</div>
-      </a>
-    </div>
-  </div>
     </>
     // <Container>
     //   <ShortFlimSlider/>

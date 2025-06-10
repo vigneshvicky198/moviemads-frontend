@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { Steps, Form, Input,ConfigProvider, Button, Upload, message, Progress,Select,notification } from 'antd';
+import { Steps, Form, Input,ConfigProvider, Button, Upload, message,Tag,Space, Progress,Select,notification } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
 import { Checkbox } from 'antd';
 
@@ -22,7 +22,7 @@ const ModelForm = () => {
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([]);
   const [previewOpen, setPreviewOpen] = useState(false);
-  const [ previewImage, setPreviewImage] = useState('');
+  const [previewImage, setPreviewImage] = useState('');
   const [refCode, setRefCode] = useState('');
   const [previewTitle, setPreviewTitle] = useState('');
   const [videoUpload, setVideoUpload] = useState(null);
@@ -50,12 +50,75 @@ const ModelForm = () => {
   const [fileSizeError1, setFileSizeError1] = useState(false);
   const [fileSizeError2, setFileSizeError2] = useState(false);
   const [price, setPrice] = useState(0);
+  const [couponInput, setCouponInput] = useState('');
+  const [appliedCoupon, setAppliedCoupon] = useState(null);
+  const [couponError, setCouponError] = useState('');
+  const [discountedPrice, setDiscountedPrice] = useState(price);
 
   const [uploadStatus, setUploadStatus] = useState({
     poster: false,
     thumbnail: false,
     images: false
   });
+
+
+  
+ // Update discounted price when price or coupon changes
+  useEffect(() => {
+    if (appliedCoupon) {
+      const discountAmount = (price * appliedCoupon.discount) / 100;
+      setDiscountedPrice(price - discountAmount);
+    } else {
+      setDiscountedPrice(price);
+    }
+  }, [price, appliedCoupon]);
+
+  const validateCoupon = async (code) => {
+    try {
+      const response = await axios.get(`${API_URL}/api/validate-coupon`, {
+        params: { code }
+      });
+
+      if (response.data.valid) {
+        return response.data;
+      }
+      return null;
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        setCouponError('Invalid or expired coupon');
+      } else {
+        setCouponError('Error validating coupon. Please try again.');
+      }
+      return null;
+    }
+  };
+
+  const handleApplyCoupon = async () => {
+    if (!couponInput.trim()) {
+      setCouponError('Please enter a coupon code');
+      return;
+    }
+
+    const result = await validateCoupon(couponInput);
+    if (result) {
+      setAppliedCoupon(result);
+      setCouponError('');
+      notification.success({
+        message: 'Coupon Applied',
+        description: `You've received ${result.discount}% off!`,
+        placement: 'top'
+      });
+    } else {
+      setAppliedCoupon(null);
+    }
+  };
+
+  const handleRemoveCoupon = () => {
+    setAppliedCoupon(null);
+    setCouponInput('');
+    setCouponError('');
+  }
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
@@ -467,10 +530,24 @@ const calculateOverallProgress = () => {
     <Topnav/>
     <Header/>
     <div className="container">
-      <div>
-      <h1 className='contest-heading'>Model form <p style={{fontSize:'1.5rem', padding:'0',margin:'0'}}>(Entry fee of <p className='strikeOut'>Rs.999</p> Now Rs.{price} only)</p> </h1>
-      </div>
-
+        <div>
+          <h1 className='contest-heading'>
+            Model form 
+            <p style={{ fontSize: '1.5rem', padding: '0', margin: '0' }}>
+              (Entry fee of <span className='strikeOut'>Rs.999</span> 
+              {appliedCoupon ? (
+                <>
+                  <span> Now Rs.<span className='original-price'>{price}</span> Rs.{discountedPrice} only</span>
+                  <Tag color="green" style={{ marginLeft: '10px' }}>
+                    {appliedCoupon.discount}% OFF
+                  </Tag>
+                </>
+              ) : (
+                <span> Now Rs.{price} only</span>
+              )}
+            </p>
+          </h1>
+        </div>
      {loading?(
        <div class="hourglassBackground">
        <div class="hourglassContainer">
@@ -717,15 +794,43 @@ const calculateOverallProgress = () => {
             <Input/>
             </Form.Item>
 
-            <Form.Item
-              label="Referral Code"
-              name="refcode"
-              className="input-container"
-              onChange={handleInputChange}
-            >
-            <Input/>
-            </Form.Item>
-            </div>
+                    <Form.Item
+                      label="Referral Code"
+                      name="refcode"
+                      className="input-container"
+                      onChange={handleInputChange}
+                    >
+                      <Input />
+                    </Form.Item>
+
+                    <Form.Item
+                      label="Coupon Code"
+                      help={couponError}
+                      validateStatus={couponError ? 'error' : ''}
+                    >
+                      <Space.Compact style={{ width: '100%' }}>
+                        <Input
+                          value={couponInput}
+                          onChange={(e) => setCouponInput(e.target.value)}
+                          placeholder="Enter coupon code"
+                          disabled={!!appliedCoupon}
+                        />
+                        {appliedCoupon ? (
+                          <Button danger onClick={handleRemoveCoupon}>
+                            Remove
+                          </Button>
+                        ) : (
+                          <Button 
+                            type="primary" 
+                            onClick={handleApplyCoupon}
+                            loading={loading} // You might want to add loading state for coupon validation
+                          >
+                            Apply
+                          </Button>
+                        )}
+                      </Space.Compact>
+                    </Form.Item>
+                  </div>
           
             {/* Add other form fields here */}
             <Form.Item>

@@ -15,14 +15,15 @@ function GoogleAuthCallback() {
     }
     const { search } = location;
     // console.log('User Agent:', navigator.userAgent);
-    axios({
-      method: 'GET',
-      url: `${API_URL}/api/auth/google/callback${search}`,
-      headers: {
-        'User-Agent': navigator.userAgent,
-        'Access-Control-Allow-Origin': '*',
-      }
-    })
+    // axios({
+    //   method: 'GET',
+    //   url: `${API_URL}/api/auth/google/callback${search}`,
+    //   headers: {
+    //     'User-Agent': navigator.userAgent,
+    //     'Access-Control-Allow-Origin': '*',
+    //   }
+    // })
+    axios.get(`${API_URL}/api/auth/google/callback${search}`)
     .then((res) => res.data)
     .then((data) => {
       setAuth(data);

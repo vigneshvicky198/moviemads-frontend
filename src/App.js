@@ -25,6 +25,9 @@ import AgentForm from "./components/Model/AgentForm";
 import AgentEditModel from "./components/Model/AgentEditModel";
 import AgentModelDetails from "./components/Model/AgentModelDetails";
 import ShortDetails from "./components/ShortFilms/ShortDetails";
+ import ShortFilmPlayer from "./components/ShortFilms/ShortFilmChecking";
+ import ShortFilmUpload from "./components/ShortFilms/ShortFilmUpload";
+import FilmUpload from "./components/ShortFilms/UploadForm";
 
 function App() {
   return (
@@ -82,6 +85,9 @@ const jwt = localStorage.getItem("JwtToken");
           <Route path="/model/:id/edit" element={<EditModel />} />
         <Route path="/editAgentModel" element={<AgentEditModel />} />
           <Route path="/keywords" element={<Keywords />} />
+           <Route path="/shortfilmplayer/:id" element={<ShortFilmPlayer />} />
+           <Route path='/shortfilmupload' element={<ShortFilmUpload />} />
+             <Route path='/shortfilmuploadForm' element={<FilmUpload />} />
           </>
         ):(
         <>
@@ -109,6 +115,10 @@ const jwt = localStorage.getItem("JwtToken");
         <Route path="/model/:id/edit" element={<EditModel />} />
         <Route path="/editAgentModel" element={<AgentEditModel />} />
         <Route path="/keywords" element={<Keywords />} />
+       <Route path='/shortfilmupload' element={<ShortFilmUpload />} />
+  <Route path='/shortfilmuploadForm' element={<FilmUpload />} />
+
+            <Route path="/shortfilmplayer/:id" element={<ShortFilmPlayer />} />
         </>
         )}
         

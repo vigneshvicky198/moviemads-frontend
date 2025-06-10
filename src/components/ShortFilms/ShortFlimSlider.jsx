@@ -29,28 +29,22 @@ function ShortFlimSlider() {
     autoplay: true,
   };
 
- 
- 
- 
-
-  
-  const getSlider = async() => {
-    const res = await axios.get(`${API_URL}/api/short-film-sliders?populate[0]=short_film.MovieThumbnail&populate[1]=short_film.VideoFile`);
-    // console.log("ShortFlim Slider CHECK",res.data)
+  const getSlider = async () => {
+    const res = await axios.get(`https://api.moviemads.com/api/short-film-sliders?populate[0]=short_film.MovieThumbnail&populate[1]=short_film.VideoFile`);
+     console.log("ShortFlim Slider CHECK",res.data.data)
     setMovies(res.data.data);
   }
   useEffect(() => {
     getSlider();
-  },[]);
-
+  }, []);
 
   return (
     <Swiper
-    modules={[ Navigation, Pagination,Grid,Autoplay]}
-    slidesPerView={1}
-    centeredSlides={false}
-    spaceBetween={20}
-    autoplay={{
+      modules={[Navigation, Pagination, Grid, Autoplay]}
+      slidesPerView={1}
+      centeredSlides={false}
+      spaceBetween={20}
+      autoplay={{
         delay: 1500,
         disableOnInteraction: false,
       }}
@@ -60,28 +54,28 @@ function ShortFlimSlider() {
           slidesPerView: 3,
         },
       }}
-    navigation={true}
-  >
-  {movies.map((movie) => (
-                  <SwiperSlide className='swiper-slide1' key={movie.id}> 
-                      <Wrap >
-          <Info>
-          <Subtitle>{movie.attributes.short_film.data.attributes.MovieName}</Subtitle>
-      <Link to={'/shortflimDetails/'+movie.attributes.short_film.data.id} onClick={() => window.scrollTo(0, 0)} className="movie-link1" >
-         <Button1><PlayCircleFilled spin/> Play Now</Button1>
-          <Button2><InfoCircleFilled /> More Info</Button2>
-           </Link>
-           <Description>{movie.attributes.short_film.data.attributes.Description}</Description>
-         </Info>
-         <Overlays>
-           <img src={`${API_URL}${movie.attributes.short_film.data.attributes.MovieThumbnail.data.attributes.url}`} alt="Img" id={movie.id}/>
-           </Overlays>
-        </Wrap></SwiperSlide>
-    
+      navigation={true}
+    >
+      {movies.map((movie) => (
+        <SwiperSlide className='swiper-slide1' key={movie.id}>
+          <Wrap >
+            <Info>
+              <Subtitle>{movie.attributes.short_film.data.attributes.MovieName}</Subtitle>
+              <Link to={'/shortflimDetails/' + movie.attributes.short_film.data.id} onClick={() => window.scrollTo(0, 0)} className="movie-link1" >
+                <Button1><PlayCircleFilled spin /> Play Now</Button1>
+                <Button2><InfoCircleFilled /> More Info</Button2>
+              </Link>
+              <Description>{movie.attributes.short_film.data.attributes.Description}</Description>
+            </Info>
+            <Overlays>
+              <img src={`${API_URL}${movie.attributes.short_film.data.attributes.MovieThumbnail.data.attributes.url}`} alt="Img" id={movie.id} />
+            </Overlays>
+          </Wrap></SwiperSlide>
+
       ))}
-  </Swiper>
+    </Swiper>
     // <Carousel {...settings}>
-    
+
     // </Carousel>
   );
 }
@@ -246,19 +240,3 @@ const Description = styled.p`
   }
 `;
 
-// async createOrder(ctx) {
-// const { id } = ctx.params;
-// Razorpay logic here
-// }
-// module.exports = {
-//   routes: [
-//     {
-//       method: 'POST',
-//       path: '/short-films/:id/create-order',
-//       handler: 'short-film.createOrder',
-//       config: {
-//         policies: [],
-//       },
-//     },
-//   ],
-// };

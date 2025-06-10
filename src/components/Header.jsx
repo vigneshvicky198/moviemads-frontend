@@ -144,8 +144,8 @@ function Header() {
             <a onClick={() => { navigate("/model"); handleMenuClick(); }}>
               <span>Models</span>
             </a>
-            <a onClick={() => { navigate("/blogs"); handleMenuClick(); }}>
-              <span>Blogs</span>
+            <a onClick={() => { navigate("/shortfilmupload"); handleMenuClick(); }}>
+              <span>Short Film</span>
             </a>
             <a onClick={() => { navigate("/gallery"); handleMenuClick(); }}>
               <span>Gallery</span>

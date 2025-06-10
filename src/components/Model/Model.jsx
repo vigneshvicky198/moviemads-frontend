@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { ConfigProvider, Pagination } from 'antd';
 import Topnav from '../TopNav/Topnav';
 import Header from '../Header';
+import CouponForm from './Coupon';
 const API_URL = process.env.REACT_APP_API_URL;
 const Token = localStorage.getItem("JwtToken");
 
@@ -20,9 +21,12 @@ const Model = () => {
   const [current, setCurrent] = useState(1);
   const [current1, setCurrent1] = useState(1);
   const [current2, setCurrent2] = useState(1);
-  const [pageSize] = useState(6);
-  const [pageSize1] = useState(6);
-  const [pageSize2] = useState(12);
+  // const [pageSize] = useState(6);
+  // const [pageSize1] = useState(6);
+  // const [pageSize2] = useState(12);
+    const [pageSize] = useState(5);
+  const [pageSize1] = useState(5);
+  const [pageSize2] = useState(10);
   const [maleModel, setMaleModel] = useState([]);
   const [femaleModel, setFemaleModel] = useState([]);
   const [childArtist, setChildArtist] = useState([]);
@@ -48,8 +52,8 @@ const option1 = {
   const getMaleModel = async () => {
     try {
       const [modelsRes, agentModelsRes] = await Promise.all([
-        axios.get(`${API_URL}/api/models?filters[Category][$eq]=Male&filters[Payment][$eq]=Paid&sort[0]=id:desc&populate=*`),
-        axios.get(`${API_URL}/api/agent-models?filters[Category][$eq]=Male&filters[Payment][$eq]=Paid&sort[0]=id:desc&populate=*`)
+        axios.get(`${API_URL}/api/models?filters[Category][$eq]=Male&filters[Payment][$eq]=Paid&sort[0]=id:asc&populate=*`),
+        axios.get(`${API_URL}/api/agent-models?filters[Category][$eq]=Male&filters[Payment][$eq]=Paid&sort[0]=id:asc&populate=*`)
       ]);
   
       const modelsData = modelsRes.data.data.map(item => ({
@@ -73,8 +77,8 @@ const option1 = {
   const getFemaleModel = async () => {
     try {
       const [femaleModelsRes, agentFemaleModelsRes] = await Promise.all([
-        axios.get(`${API_URL}/api/models?filters[Category][$eq]=Female&filters[Payment][$eq]=Paid&sort[0]=id:desc&populate=*`),
-        axios.get(`${API_URL}/api/agent-models?filters[Category][$eq]=Female&filters[Payment][$eq]=Paid&sort[0]=id:desc&populate=*`)
+        axios.get(`${API_URL}/api/models?filters[Category][$eq]=Female&filters[Payment][$eq]=Paid&sort[0]=id:asc&populate=*`),
+        axios.get(`${API_URL}/api/agent-models?filters[Category][$eq]=Female&filters[Payment][$eq]=Paid&sort[0]=id:asc&populate=*`)
       ]);
   
       const femaleModelsData = femaleModelsRes.data.data.map(item => ({
@@ -98,8 +102,8 @@ const option1 = {
   const getChildArtist = async () => {
     try {
       const [childModelsRes, agentChildModelsRes] = await Promise.all([
-        axios.get(`${API_URL}/api/models?filters[Category][$eq]=ChildArtist&filters[Payment][$eq]=Paid&sort[0]=id:desc&populate=*`),
-        axios.get(`${API_URL}/api/agent-models?filters[Category][$eq]=ChildArtist&filters[Payment][$eq]=Paid&sort[0]=id:desc&populate=*`)
+        axios.get(`${API_URL}/api/models?filters[Category][$eq]=ChildArtist&filters[Payment][$eq]=Paid&sort[0]=id:asc&populate=*`),
+        axios.get(`${API_URL}/api/agent-models?filters[Category][$eq]=ChildArtist&filters[Payment][$eq]=Paid&sort[0]=id:asc&populate=*`)
       ]);
   
       const childModelsData = childModelsRes.data.data.map(item => ({
@@ -169,11 +173,14 @@ const option1 = {
 
 // console.log(currentPageMovies,'Current page')
 
+
+
   return (
     <>
     <Topnav/>
     <Header/>
   <Container>
+  <CouponForm/>
     <ModelSlider/>
     {/* Model content starts */}
     <Toolbar>
